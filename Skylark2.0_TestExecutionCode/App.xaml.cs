@@ -6,7 +6,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 
-namespace Skylark2._0_TestExecutionCode
+namespace Skylark2_TestExecutionCode
 {
     /// <summary>
     /// Interaction logic for App.xaml

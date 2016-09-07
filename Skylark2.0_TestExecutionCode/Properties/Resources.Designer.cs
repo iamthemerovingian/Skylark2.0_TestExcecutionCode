@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Skylark2._0_TestExecutionCode.Properties
+namespace Skylark2_TestExecutionCode.Properties
 {
 
 
@@ -44,7 +44,7 @@ namespace Skylark2._0_TestExecutionCode.Properties
             {
                 if ((resourceMan == null))
                 {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Skylark2._0_TestExecutionCode.Properties.Resources", typeof(Resources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Skylark2_TestExecutionCode.Properties.Resources", typeof(Resources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;

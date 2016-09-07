@@ -12,7 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace Skylark2._0_TestExecutionCode.Views
+namespace Skylark2_TestExecutionCode.Views
 {
     /// <summary>
     /// Interaction logic for StartTestView.xaml

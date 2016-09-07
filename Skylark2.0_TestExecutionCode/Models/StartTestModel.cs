@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Skylark2._0_TestExecutionCode.Models
+namespace Skylark2_TestExecutionCode.Models
 {
     class StartTestModel
     {

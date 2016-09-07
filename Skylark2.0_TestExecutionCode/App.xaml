@@ -1,7 +1,7 @@
-﻿<Application x:Class="Skylark2._0_TestExecutionCode.App"
+﻿<Application x:Class="Skylark2_TestExecutionCode.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:local="clr-namespace:Skylark2._0_TestExecutionCode"
+             xmlns:local="clr-namespace:Skylark2_TestExecutionCode"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
          

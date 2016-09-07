@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Skylark2._0_TestExecutionCode.Properties
+namespace Skylark2_TestExecutionCode.Properties
 {
 
 
