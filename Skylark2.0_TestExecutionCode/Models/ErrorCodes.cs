@@ -12,7 +12,7 @@ namespace Skylark2_TestExecutionCode.Models
 {
     class ErrorCodes
     {
-        Sqlite_Query_Handler SqliteQueries = new Sqlite_Query_Handler();
+        //Sqlite_Query_Handler SqliteQueries = new Sqlite_Query_Handler();
         private string errorCode;
 
         public string ErrorCode
@@ -27,16 +27,16 @@ namespace Skylark2_TestExecutionCode.Models
             }
         }
 
-        public DataTable getErrorCodeInfo()
-        {
-            return SqliteQueries.Get_ErrorCodesTable();
-        }
+        //public DataTable getErrorCodeInfo()
+        //{
+        //    return SqliteQueries.Get_ErrorCodesTable();
+        //}
 
-        public bool SaveErrorCodeInfo(DataTable ErrorCodeTable)
-        {
-            DataTable errorCodeTable = ErrorCodeTable;
-            return SqliteQueries.Update_ErrorCodesTable(errorCodeTable)>0;
-        }
+        //public bool SaveErrorCodeInfo(DataTable ErrorCodeTable)
+        //{
+        //    DataTable errorCodeTable = ErrorCodeTable;
+        //    return SqliteQueries.Update_ErrorCodesTable(errorCodeTable)>0;
+        //}
 
 
     }

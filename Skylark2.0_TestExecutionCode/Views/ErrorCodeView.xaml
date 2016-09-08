@@ -6,6 +6,7 @@
         xmlns:local="clr-namespace:Skylark2_TestExecutionCode.Views"
         xmlns:prism="http://prismlibrary.com/"
         prism:ViewModelLocator.AutoWireViewModel="True"
+        xmlns:views="clr-namespace:Skylark2_TestExecutionCode.Views"
         mc:Ignorable="d"
         Title="ErrorCode UI" Height="203.348" Width="572.594">
 
@@ -17,8 +18,8 @@
         <Label x:Name="lblUserID" FontSize="20" FontWeight="Bold" Content="User ID: " Margin="10,10,463,0" VerticalAlignment="Top" Grid.Column="1"/>
         <Label x:Name="lblErrorCode" FontSize="20" FontWeight="Bold" Content="Error Code: " Margin="8,62,434,0" VerticalAlignment="Top" Grid.Column="1"/>
         <TextBox x:Name="txtUserID" FontSize="20" FontWeight="Bold" Height="40" Margin="138,12,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Grid.Column="1" HorizontalAlignment="Left" Width="412" />
-        <TextBox x:Name="txtErroCode" FontSize="20" Text="{Binding ErrorCodeData, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" FontWeight="Bold" Height="40" Margin="138,59,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Grid.Column="1" HorizontalAlignment="Left" Width="412"/>
-        <Button x:Name="btnCancel" FontSize="20" FontWeight="Bold" Content="Cancel" Margin="475,125,0,-22" Grid.Column="1" HorizontalAlignment="Left" Width="75" Height="33" VerticalAlignment="Top"/>
-        <Button x:Name="btnOK" FontSize="20" FontWeight="Bold" Content="OK" Margin="395,125,0,-22" Grid.Column="1" HorizontalAlignment="Left" Width="75" Height="33" VerticalAlignment="Top"/>
+        <TextBox x:Name="txtErroCode" FontSize="20" Text="{Binding ErrorCodeData, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" FontWeight="Bold" Height="40" Margin="138,59,0,0"  VerticalAlignment="Top" Grid.Column="1" HorizontalAlignment="Left" Width="412"/>
+        <Button x:Name="btnCancel" FontSize="20" Command="{Binding ExitApplication}" FontWeight="Bold" Content="Cancel" Margin="475,125,0,-22" Grid.Column="1" HorizontalAlignment="Left" Width="75" Height="33" VerticalAlignment="Top"/>
+        <Button x:Name="btnOK" FontSize="20" Command="{Binding WriteErrorCode}" FontWeight="Bold" Content="OK" Margin="395,125,0,-22" Grid.Column="1" HorizontalAlignment="Left" Width="75" Height="33" VerticalAlignment="Top"/>
     </Grid>
 </Window>
