@@ -24,7 +24,6 @@ namespace Skylark2_TestExecutionCode
         protected override void ConfigureContainer()
         {
             base.ConfigureContainer();
-
             Container.RegisterTypeForNavigation<ErrorCodeView>("ErrorCodeView");
         }
 
