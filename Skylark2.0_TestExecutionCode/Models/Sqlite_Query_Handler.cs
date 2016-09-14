@@ -10951,6 +10951,8 @@ namespace Skylark
                     ServerErrorLog.GetERROR_SQL_Server("Un-Known ERROR. " + xc.Message);
                 }
             }
+            sqliteconn.Close();
+            GC.Collect();
             return Root_Cause;
         }
 

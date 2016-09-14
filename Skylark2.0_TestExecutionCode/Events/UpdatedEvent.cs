@@ -1,4 +1,6 @@
 ﻿using Prism.Events;
+using Skylark2_TestExecutionCode.Models;
+
 
 namespace Skylark2_TestExecutionCode.Events
 {
@@ -11,6 +13,12 @@ namespace Skylark2_TestExecutionCode.Events
     /// This Object of type string is what goes around to be recieved by other viewmodels.
     /// </summary>
     public class UpdatedEvent : PubSubEvent<string>
+    {
+    }
+    public class ErrorCodeUpdated : PubSubEvent<string>
+    {
+    }
+    public class RootCauseUpdated : PubSubEvent<string>
     {
     }
 }

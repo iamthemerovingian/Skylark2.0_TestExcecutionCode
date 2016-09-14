@@ -12,9 +12,12 @@ namespace Skylark2_TestExecutionCode.ViewModels
     class ErrorCodeViewModel : BindableBase
     {
         private string _errorCode;
+        private string _rootCause;
+
+        ErrorCodes ErrorCodesObj = new ErrorCodes();
+
         public ErrorCodeViewModel()
         {
-            ErrorCodes ErrorCodesObj = new ErrorCodes();
             ErrorCodesObj.ErrorCode = "Some Error Code";
             _errorCode = ErrorCodesObj.ErrorCode;
         }
@@ -31,13 +34,18 @@ namespace Skylark2_TestExecutionCode.ViewModels
             set { SetProperty(ref _errorCode, value);}
         }
 
+        public string RootCause
+        {
+            get { return _rootCause; }
+            set { SetProperty(ref _rootCause, value); }
+        }
         /// <summary>
         /// Delegate Commands are the things that the UI binds to when they want to call an action.
         /// So if you want a button press to do something, you have to make a Delegate Command and follow the style for ExitApplication command.
         /// In the UI, you must Bind the Delegate Command Name and use the ViewModelLocator.AutoWireViewModel="True" line in the XAML.
         /// </summary>
-        public DelegateCommand WriteErrorCode { get; set; }
-        public DelegateCommand ExitApplication { get; set; }
+        public DelegateCommand Finish_Click { get; set; }
+        public DelegateCommand Cancel_Click { get; set; }
 
         /// <summary>
         /// This is the method that holds the execution and validation scenarios of certain methods.
@@ -57,7 +65,8 @@ namespace Skylark2_TestExecutionCode.ViewModels
             ///This is getting the updatedevent and waiting for any messages that are sent to it.
             ///So when ExceuteWriteErrorCode is called it sends a massage to us and we will recieve it here.
             ///After Recieving it we will call the Updated method.
-            eventAggregator.GetEvent<UpdatedEvent>().Subscribe(Updated);
+
+
 
             /// WriteErrorCode object is loaded with the object of type delegate command.
             /// This delegate command will execute the ExecuteWriteErrorCode if the CanExecuteWriteErrorCode method returns a true.
@@ -65,33 +74,48 @@ namespace Skylark2_TestExecutionCode.ViewModels
             /// 
             /// So in summary this line will execute the ExecuteWriteErrorCode if the CanExecute returns true, its state is updated only whem ErrroCodeData is run.
 
-            WriteErrorCode = new DelegateCommand(ExecuteWriteErrorCode, CanExecuteWriteErrorCode).ObservesProperty(() => ErrorCodeData);
+            Finish_Click = new DelegateCommand(FinishLogic, CanExecuteFinishLogic).ObservesProperty(() => ErrorCodeData);
 
-            ExitApplication = new DelegateCommand(ExecuteCloseWindow, CanExecuteCloseWindow).ObservesProperty(()=> ErrorCodeData);
+            Cancel_Click = new DelegateCommand(ExecuteCloseWindow, CanExecuteCloseWindow).ObservesProperty(()=> RootCause);
+
+            eventAggregator.GetEvent<ErrorCodeUpdated>().Subscribe(ErrorCodeSaved);
+            eventAggregator.GetEvent<RootCauseUpdated>().Subscribe(RootCauseSaved);
         }
 
 
         #region WriteErrorCode Members
-        private bool CanExecuteWriteErrorCode()
+        private bool CanExecuteFinishLogic()
         {
-            return true;
+            RootCause = ErrorCodesObj.GetRootCause(ErrorCodeData);
+
+            if (ErrorCodeData == "8888") RootCause = ErrorCodesObj.InputRootCause();
+
+            if (string.IsNullOrWhiteSpace(RootCause))
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
         }
 
-        private void ExecuteWriteErrorCode()
+        private void FinishLogic()
         {
-            ///This eventAggregator is used for communication between different ViewModels. 
-            ///In this case it is getting the updated event and publishing it with a payload string. 
-            ///Publishing is like sending a message.
-            ///Subscribing is like recieving a message.
-            _eventAggregator.GetEvent<UpdatedEvent>().Publish("Sending a Message from the ExecuteWriteErrorCode method!!");
+            _eventAggregator.GetEvent<ErrorCodeUpdated>().Publish(ErrorCodeData);
+            _eventAggregator.GetEvent<RootCauseUpdated>().Publish(RootCause);
         }
 
 
-        public void Updated(string obj)
+        public void ErrorCodeSaved(string obj)
         {
-            ErrorCodeData = obj;
+            MessageBox.Show("Error Code: " + obj);
         }
 
+        public void RootCauseSaved(string obj)
+        {
+            MessageBox.Show("Root Cause: " + obj);
+        }
         #endregion
 
         #region CloseWindow Members
@@ -104,7 +128,7 @@ namespace Skylark2_TestExecutionCode.ViewModels
         /// <returns></returns>
         private bool CanExecuteCloseWindow()
         {
-            return !string.IsNullOrWhiteSpace(ErrorCodeData);
+            return true;
         }
         
         private void ExecuteCloseWindow()
