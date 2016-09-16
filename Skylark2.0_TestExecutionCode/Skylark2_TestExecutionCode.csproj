@@ -117,10 +117,15 @@
     <Compile Include="Models\SQLServerLogFile_Error.cs" />
     <Compile Include="Models\StartTestModel.cs" />
     <Compile Include="Models\StoreAndRetrieveBasicInfo.cs" />
+    <Compile Include="Notifications\InputTextNotification.cs" />
     <Compile Include="ViewModels\ErrroCodeViewModel.cs" />
+    <Compile Include="ViewModels\InputTextViewModel.cs" />
     <Compile Include="ViewModels\StartTestViewModel.cs" />
     <Compile Include="Views\ErrorCodeView.xaml.cs">
       <DependentUpon>ErrorCodeView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\InputTextView.xaml.cs">
+      <DependentUpon>InputTextView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\StartTestView.xaml.cs">
       <DependentUpon>StartTestView.xaml</DependentUpon>
@@ -138,6 +143,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="Views\ErrorCodeView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\InputTextView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

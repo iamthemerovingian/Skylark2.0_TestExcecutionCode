@@ -6,6 +6,9 @@ using Prism.Regions;
 using Prism.Commands;
 using System;
 using System.Windows;
+using Skylark2_TestExecutionCode.Notifications;
+using Prism.Interactivity.InteractionRequest;
+using System.Windows.Input;
 
 namespace Skylark2_TestExecutionCode.ViewModels
 {
@@ -20,7 +23,18 @@ namespace Skylark2_TestExecutionCode.ViewModels
         {
             ErrorCodesObj.ErrorCode = "Some Error Code";
             _errorCode = ErrorCodesObj.ErrorCode;
+            //this.InputTextRequest = new InteractionRequest<InputTextNotification>();
+            //this.NotificationRequest = new InteractionRequest<INotification>();
+            //this.RaiseNotificationCommand = new DelegateCommand(this.RaiseNotification);
+
         }
+
+        public InteractionRequest<InputTextNotification> InputTextRequest { get; set; }
+
+        public InteractionRequest<INotification> NotificationRequest { get; private set; }
+        //public ICommand RaiseNotificationCommand { get; private set; }
+
+
 
         /// <summary>
         /// This is a propertu of the ErrorCodeViewModel.
@@ -47,6 +61,10 @@ namespace Skylark2_TestExecutionCode.ViewModels
         public DelegateCommand Finish_Click { get; set; }
         public DelegateCommand Cancel_Click { get; set; }
 
+        public DelegateCommand CustomCommand { get; set; }
+
+        public DelegateCommand RaiseNotificationCommand { get; set; }
+
         /// <summary>
         /// This is the method that holds the execution and validation scenarios of certain methods.
         /// the IEventAggregator is for communicating between different view models.
@@ -55,6 +73,8 @@ namespace Skylark2_TestExecutionCode.ViewModels
         /// <param name="eventAggregator"></param>
 
         private readonly IEventAggregator _eventAggregator;
+
+        //Will only work if you are using prism.unity package
         public ErrorCodeViewModel(IEventAggregator eventAggregator)
         {
             ///The eventAggregator can cath events and publish them so other people can subscribe to them.
@@ -66,7 +86,8 @@ namespace Skylark2_TestExecutionCode.ViewModels
             ///So when ExceuteWriteErrorCode is called it sends a massage to us and we will recieve it here.
             ///After Recieving it we will call the Updated method.
 
-
+            NotificationRequest = new InteractionRequest<INotification>();
+            InputTextRequest = new InteractionRequest<InputTextNotification>();
 
             /// WriteErrorCode object is loaded with the object of type delegate command.
             /// This delegate command will execute the ExecuteWriteErrorCode if the CanExecuteWriteErrorCode method returns a true.
@@ -78,8 +99,54 @@ namespace Skylark2_TestExecutionCode.ViewModels
 
             Cancel_Click = new DelegateCommand(ExecuteCloseWindow, CanExecuteCloseWindow).ObservesProperty(()=> RootCause);
 
-            eventAggregator.GetEvent<ErrorCodeUpdated>().Subscribe(ErrorCodeSaved);
-            eventAggregator.GetEvent<RootCauseUpdated>().Subscribe(RootCauseSaved);
+            CustomCommand = new DelegateCommand(RaiseInputTextDialog, CanExcecuteRaiseInputDialog).ObservesProperty(() => ErrorCodeData).ObservesProperty(() => RootCause);
+
+            RaiseNotificationCommand = new DelegateCommand(this.RaiseNotification);
+
+            //eventAggregator.GetEvent<ErrorCodeUpdated>().Subscribe(ErrorCodeSaved);
+            //eventAggregator.GetEvent<RootCauseUpdated>().Subscribe(RootCauseSaved);
+        }
+
+        private void RaiseNotification()
+        {
+            this.NotificationRequest.Raise(
+               new Notification { Content = "Notification Message", Title = "Notification" },
+                    n =>
+                    {
+                        MessageBox.Show("The user was notified.");
+                    }
+                                           );
+        }
+
+        private bool CanExcecuteRaiseInputDialog()
+        {
+            return true;
+        }
+
+        private void RaiseInputTextDialog()
+        {
+            InputTextNotification notification = new InputTextNotification();
+            notification.Confirmed = false;
+            notification.Content = "Empty String";
+            notification.ErrorCodeText = "No Error Code";
+            notification.RootCauseText = " No Root Cause";
+            notification.Title = "No Title";
+
+            this.InputTextRequest.Raise(notification,
+                returned =>
+                {
+                    if (returned != null && returned.Confirmed && !string.IsNullOrWhiteSpace(returned.ErrorCodeText) && !string.IsNullOrWhiteSpace(returned.RootCauseText))
+                    {
+                        this.ErrorCodeData = returned.ErrorCodeText;
+                        this.RootCause = returned.RootCauseText;
+                        MessageBox.Show("Error Code Data Recieved is : " + returned.ErrorCodeText + "\n Root Cause is : " + returned.RootCauseText);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Some Shit went wrong...\n Error Code: " + returned.ErrorCodeText + "\n Root Cause: " + returned.RootCauseText + "\n Confirmed: " + returned.Confirmed);
+                    }
+                }
+                                        );
         }
 
 
@@ -102,8 +169,8 @@ namespace Skylark2_TestExecutionCode.ViewModels
 
         private void FinishLogic()
         {
-            _eventAggregator.GetEvent<ErrorCodeUpdated>().Publish(ErrorCodeData);
-            _eventAggregator.GetEvent<RootCauseUpdated>().Publish(RootCause);
+            //_eventAggregator.GetEvent<ErrorCodeUpdated>().Publish(ErrorCodeData);
+            //_eventAggregator.GetEvent<RootCauseUpdated>().Publish(RootCause);
         }
 
 

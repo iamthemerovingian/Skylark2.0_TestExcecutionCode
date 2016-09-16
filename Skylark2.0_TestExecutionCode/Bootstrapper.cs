@@ -43,6 +43,7 @@ namespace Skylark2_TestExecutionCode
         {
             base.ConfigureContainer();
             Container.RegisterTypeForNavigation<ErrorCodeView>("ErrorCodeView");
+            Container.RegisterTypeForNavigation<InputTextView>("InputTextView");
         }
     }
 }
