@@ -7,8 +7,8 @@
              xmlns:prism="http://prismlibrary.com/"
              xmlns:views="clr-namespace:Skylark2_TestExecutionCode.Views"
              prism:ViewModelLocator.AutoWireViewModel="True"
-             mc:Ignorable="d" Height="178.109" Width="557.748">
-    <Grid Margin="0,0,10,10">
+             mc:Ignorable="d" Height="186.109" Width="557.748">
+    <Grid Margin="10,10,10,10">
         <TextBox x:Name="txtErrorCode" Text="{Binding ErrorCodeText, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" FontSize="20" FontWeight="Bold" Height="40" HorizontalAlignment="Left" Margin="187,37,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="349"/>
         <TextBox x:Name="txtRootCause" Text="{Binding RootCauseText, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" FontSize="20" FontWeight="Bold" Height="40" HorizontalAlignment="Left" Margin="187,82,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="349"/>
         <Label x:Name="lblErrorCode" FontSize="20" FontWeight="Bold" Height="40" Content="Error Code:" HorizontalAlignment="Left" Margin="8,37,0,0" VerticalAlignment="Top" Width="174"/>

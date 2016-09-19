@@ -18,9 +18,7 @@ namespace Skylark2_TestExecutionCode.ViewModels
         private string _rootCause;
 
         ErrorCodes ErrorCodesObj = new ErrorCodes();
-
         public InteractionRequest<InputTextNotification> InputTextRequest { get; set; }
-
         public InteractionRequest<INotification> NotificationRequest { get; private set; }
 
         /// <summary>
@@ -34,7 +32,6 @@ namespace Skylark2_TestExecutionCode.ViewModels
             get { return _errorCode; }
             set { SetProperty(ref _errorCode, value);}
         }
-
         public string RootCause
         {
             get { return _rootCause; }
@@ -48,8 +45,8 @@ namespace Skylark2_TestExecutionCode.ViewModels
         public DelegateCommand FinishedCommand { get; set; }
         public DelegateCommand CancelCommand { get; set; }
         public DelegateCommand CustomCommand { get; set; }
-
         public DelegateCommand RaiseNotificationCommand { get; set; }
+
 
         /// <summary>
         /// This is the method that holds the execution and validation scenarios of certain methods.
@@ -99,7 +96,7 @@ namespace Skylark2_TestExecutionCode.ViewModels
                new Notification { Content = "Notification Message", Title = "Notification" },
                     n =>
                     {
-                        MessageBox.Show("The user was notified.");
+                        //MessageBox.Show("The user was notified.");
                     }
                                            );
         }
@@ -163,7 +160,6 @@ namespace Skylark2_TestExecutionCode.ViewModels
             _eventAggregator.GetEvent<ErrorCodeUpdated>().Publish(ErrorCodeData);
             _eventAggregator.GetEvent<RootCauseUpdated>().Publish(RootCause);
         }
-
 
         public void ErrorCodeSaved(string obj)
         {

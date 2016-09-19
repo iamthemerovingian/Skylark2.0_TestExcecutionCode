@@ -118,7 +118,7 @@
     <Compile Include="Models\StartTestModel.cs" />
     <Compile Include="Models\StoreAndRetrieveBasicInfo.cs" />
     <Compile Include="Notifications\InputTextNotification.cs" />
-    <Compile Include="ViewModels\ErrroCodeViewModel.cs" />
+    <Compile Include="ViewModels\ErrorCodeViewModel.cs" />
     <Compile Include="ViewModels\InputTextViewModel.cs" />
     <Compile Include="ViewModels\StartTestViewModel.cs" />
     <Compile Include="Views\ErrorCodeView.xaml.cs">
