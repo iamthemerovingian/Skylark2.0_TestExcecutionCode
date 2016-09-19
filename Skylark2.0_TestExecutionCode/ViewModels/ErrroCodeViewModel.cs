@@ -22,9 +22,6 @@ namespace Skylark2_TestExecutionCode.ViewModels
         public InteractionRequest<InputTextNotification> InputTextRequest { get; set; }
 
         public InteractionRequest<INotification> NotificationRequest { get; private set; }
-        //public ICommand RaiseNotificationCommand { get; private set; }
-
-
 
         /// <summary>
         /// This is a propertu of the ErrorCodeViewModel.
@@ -48,9 +45,8 @@ namespace Skylark2_TestExecutionCode.ViewModels
         /// So if you want a button press to do something, you have to make a Delegate Command and follow the style for ExitApplication command.
         /// In the UI, you must Bind the Delegate Command Name and use the ViewModelLocator.AutoWireViewModel="True" line in the XAML.
         /// </summary>
-        public DelegateCommand Finish_Click { get; set; }
-        public DelegateCommand Cancel_Click { get; set; }
-
+        public DelegateCommand FinishedCommand { get; set; }
+        public DelegateCommand CancelCommand { get; set; }
         public DelegateCommand CustomCommand { get; set; }
 
         public DelegateCommand RaiseNotificationCommand { get; set; }
@@ -75,7 +71,10 @@ namespace Skylark2_TestExecutionCode.ViewModels
             ///This is getting the updatedevent and waiting for any messages that are sent to it.
             ///So when ExceuteWriteErrorCode is called it sends a massage to us and we will recieve it here.
             ///After Recieving it we will call the Updated method.
+            eventAggregator.GetEvent<ErrorCodeUpdated>().Subscribe(ErrorCodeSaved);
+            eventAggregator.GetEvent<RootCauseUpdated>().Subscribe(RootCauseSaved);
 
+            //This is a notification request, it is used to bind to the current viewmodel and pass control to a notification through InteractionRequests.
             NotificationRequest = new InteractionRequest<INotification>();
             InputTextRequest = new InteractionRequest<InputTextNotification>();
 
@@ -85,16 +84,13 @@ namespace Skylark2_TestExecutionCode.ViewModels
             /// 
             /// So in summary this line will execute the ExecuteWriteErrorCode if the CanExecute returns true, its state is updated only whem ErrroCodeData is run.
 
-            Finish_Click = new DelegateCommand(FinishLogic, CanExecuteFinishLogic).ObservesProperty(() => ErrorCodeData);
+            FinishedCommand = new DelegateCommand(FinishLogic, CanExecuteFinishLogic).ObservesProperty(() => ErrorCodeData);
 
-            Cancel_Click = new DelegateCommand(ExecuteCloseWindow, CanExecuteCloseWindow).ObservesProperty(()=> RootCause);
+            CancelCommand = new DelegateCommand(ExecuteCloseWindow, CanExecuteCloseWindow).ObservesProperty(()=> RootCause);
 
             CustomCommand = new DelegateCommand(RaiseInputTextDialog, CanExcecuteRaiseInputDialog).ObservesProperty(() => ErrorCodeData).ObservesProperty(() => RootCause);
 
             RaiseNotificationCommand = new DelegateCommand(this.RaiseNotification);
-
-            eventAggregator.GetEvent<ErrorCodeUpdated>().Subscribe(ErrorCodeSaved);
-            eventAggregator.GetEvent<RootCauseUpdated>().Subscribe(RootCauseSaved);
         }
 
         private void RaiseNotification()
