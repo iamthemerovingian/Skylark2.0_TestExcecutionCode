@@ -48,7 +48,6 @@ namespace Skylark2_TestExecutionCode.Models
 
         public string InputRootCause()
         {
-            // RootCause = Interaction.InputBox("Please describe this special error !!");
             return rootCause;
         }
     }

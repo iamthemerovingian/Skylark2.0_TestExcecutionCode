@@ -19,16 +19,6 @@ namespace Skylark2_TestExecutionCode.ViewModels
 
         ErrorCodes ErrorCodesObj = new ErrorCodes();
 
-        public ErrorCodeViewModel()
-        {
-            ErrorCodesObj.ErrorCode = "Some Error Code";
-            _errorCode = ErrorCodesObj.ErrorCode;
-            //this.InputTextRequest = new InteractionRequest<InputTextNotification>();
-            //this.NotificationRequest = new InteractionRequest<INotification>();
-            //this.RaiseNotificationCommand = new DelegateCommand(this.RaiseNotification);
-
-        }
-
         public InteractionRequest<InputTextNotification> InputTextRequest { get; set; }
 
         public InteractionRequest<INotification> NotificationRequest { get; private set; }
@@ -74,7 +64,7 @@ namespace Skylark2_TestExecutionCode.ViewModels
 
         private readonly IEventAggregator _eventAggregator;
 
-        //Will only work if you are using prism.unity package
+        //Will only work if you are using prism.unity package and have registered this form with Unity in the bootstrapper class.
         public ErrorCodeViewModel(IEventAggregator eventAggregator)
         {
             ///The eventAggregator can cath events and publish them so other people can subscribe to them.
@@ -103,8 +93,8 @@ namespace Skylark2_TestExecutionCode.ViewModels
 
             RaiseNotificationCommand = new DelegateCommand(this.RaiseNotification);
 
-            //eventAggregator.GetEvent<ErrorCodeUpdated>().Subscribe(ErrorCodeSaved);
-            //eventAggregator.GetEvent<RootCauseUpdated>().Subscribe(RootCauseSaved);
+            eventAggregator.GetEvent<ErrorCodeUpdated>().Subscribe(ErrorCodeSaved);
+            eventAggregator.GetEvent<RootCauseUpdated>().Subscribe(RootCauseSaved);
         }
 
         private void RaiseNotification()
@@ -139,7 +129,7 @@ namespace Skylark2_TestExecutionCode.ViewModels
                     {
                         this.ErrorCodeData = returned.ErrorCodeText;
                         this.RootCause = returned.RootCauseText;
-                        MessageBox.Show("Error Code Data Recieved is : " + returned.ErrorCodeText + "\n Root Cause is : " + returned.RootCauseText);
+                        //MessageBox.Show("Error Code Data Recieved is : " + returned.ErrorCodeText + "\n Root Cause is : " + returned.RootCauseText);
                     }
                     else
                     {
@@ -153,9 +143,14 @@ namespace Skylark2_TestExecutionCode.ViewModels
         #region WriteErrorCode Members
         private bool CanExecuteFinishLogic()
         {
-            RootCause = ErrorCodesObj.GetRootCause(ErrorCodeData);
-
-            if (ErrorCodeData == "8888") RootCause = ErrorCodesObj.InputRootCause();
+            if (ErrorCodeData == "8888")
+            {
+                //RootCause = ErrorCodesObj.InputRootCause();
+            }
+            else
+            {
+                RootCause = ErrorCodesObj.GetRootCause(ErrorCodeData);
+            }
 
             if (string.IsNullOrWhiteSpace(RootCause))
             {
@@ -169,8 +164,8 @@ namespace Skylark2_TestExecutionCode.ViewModels
 
         private void FinishLogic()
         {
-            //_eventAggregator.GetEvent<ErrorCodeUpdated>().Publish(ErrorCodeData);
-            //_eventAggregator.GetEvent<RootCauseUpdated>().Publish(RootCause);
+            _eventAggregator.GetEvent<ErrorCodeUpdated>().Publish(ErrorCodeData);
+            _eventAggregator.GetEvent<RootCauseUpdated>().Publish(RootCause);
         }
 
 

@@ -10,10 +10,10 @@
         xmlns:views="clr-namespace:Skylark2_TestExecutionCode.Views"
         mc:Ignorable="d"
         Title="ErrorCode UI" Height="242.109" Width="572.594">
-
+<!--This section is to form the connection between this window and the interaction windows.-->
     <i:Interaction.Triggers>
         <prism:InteractionRequestTrigger SourceObject="{Binding InputTextRequest, Mode=OneWay}">
-            <prism:PopupWindowAction>
+            <prism:PopupWindowAction IsModal="True" CenterOverAssociatedObject="True">
                 <prism:PopupWindowAction.WindowContent>
                     <views:InputTextView/>
                 </prism:PopupWindowAction.WindowContent>
@@ -24,6 +24,7 @@
             <prism:PopupWindowAction IsModal="True" CenterOverAssociatedObject="True"/>
         </prism:InteractionRequestTrigger>
     </i:Interaction.Triggers>
+<!--Interaction Window bindings end here.-->
     
     <Grid Height="213" VerticalAlignment="Top" Margin="0,0,0,-1">
         <Grid.ColumnDefinitions>
@@ -36,7 +37,7 @@
         <TextBox x:Name="txtErroCode" FontSize="20" Text="{Binding ErrorCodeData, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" FontWeight="Bold" Height="40" Margin="138,59,0,0"  VerticalAlignment="Top" Grid.Column="1" HorizontalAlignment="Left" Width="412"/>
         <Button x:Name="btnCancel" FontSize="20" Command="{Binding Cancel_Click}" FontWeight="Bold" Content="Cancel" Margin="475,159,0,0" Grid.Column="1" HorizontalAlignment="Left" Width="75" Height="33" VerticalAlignment="Top"/>
         <Button x:Name="btnOK" FontSize="20" Command="{Binding Finish_Click}" FontWeight="Bold" Content="OK" Margin="395,159,0,0" Grid.Column="1" HorizontalAlignment="Left" Width="75" Height="33" VerticalAlignment="Top"/>
-        <Label x:Name="lblRootCause" FontSize="20" FontWeight="Bold" Content="{Binding RootCause, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" Margin="138,104,13,0" VerticalAlignment="Top" Grid.Column="1" Height="32"/>
+        <Label x:Name="lblRootCause" FontSize="20" FontWeight="Bold" FontStyle="Italic" Content="{Binding RootCause, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" Margin="138,104,13,0" VerticalAlignment="Top" Grid.Column="1" Height="40"/>
         <Button x:Name="btnCustomErrorCode" FontSize="20" Command="{Binding CustomCommand}" FontWeight="Bold" Content="Custom" Margin="10,159,0,0" Grid.Column="1" HorizontalAlignment="Left" Width="96" Height="33" VerticalAlignment="Top"/>
     </Grid>
 </Window>
