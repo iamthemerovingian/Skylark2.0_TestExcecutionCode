@@ -20,7 +20,7 @@ namespace Skylark2_TestExecutionCode
         {
             ///This will show the shell of the application.
             ///This Shell is for the tyoe of application that has one shell and many controls that can be loaded to the shells regions independently.
-            return Container.TryResolve<ErrorCodeView>();
+            return Container.TryResolve<StartTestView>();
         }
 
         protected override void InitializeShell()
@@ -42,6 +42,7 @@ namespace Skylark2_TestExecutionCode
         protected override void ConfigureContainer()
         {
             base.ConfigureContainer();
+            Container.RegisterTypeForNavigation<StartTestView>("StartTestView");
             Container.RegisterTypeForNavigation<ErrorCodeView>("ErrorCodeView");
             Container.RegisterTypeForNavigation<InputTextView>("InputTextView");
         }

@@ -18,7 +18,7 @@ namespace Skylark2_TestExecutionCode.Views
     /// <summary>
     /// Interaction logic for ErrorCodeView.xaml
     /// </summary>
-    public partial class ErrorCodeView : Window
+    public partial class ErrorCodeView : UserControl
     {
         public ErrorCodeView()
         {

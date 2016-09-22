@@ -58,7 +58,7 @@ namespace Skylark2_TestExecutionCode.ViewModels
         private readonly IEventAggregator _eventAggregator;
 
         //Will only work if you are using prism.unity package and have registered this form with Unity in the bootstrapper class.
-        public ErrorCodeViewModel(IEventAggregator eventAggregator)
+        public ErrorCodeViewModel(IEventAggregator eventAggregator, IRegionManager regionManager)
         {
             ///The eventAggregator can cath events and publish them so other people can subscribe to them.
             ///This is used to communicate between different viewmodels.
@@ -88,6 +88,10 @@ namespace Skylark2_TestExecutionCode.ViewModels
             CustomCommand = new DelegateCommand(RaiseInputTextDialog, CanExcecuteRaiseInputDialog).ObservesProperty(() => ErrorCodeData).ObservesProperty(() => RootCause);
 
             RaiseNotificationCommand = new DelegateCommand(this.RaiseNotification);
+
+            ///This is for navigating regions.
+             _regionManager = regionManager;
+             NavigateCommand = new DelegateCommand<string>(Navigate);
         }
 
         private void RaiseNotification()
@@ -132,7 +136,6 @@ namespace Skylark2_TestExecutionCode.ViewModels
                                         );
         }
 
-
         #region WriteErrorCode Members
         private bool CanExecuteFinishLogic()
         {
@@ -163,12 +166,14 @@ namespace Skylark2_TestExecutionCode.ViewModels
 
         public void ErrorCodeSaved(string obj)
         {
-            MessageBox.Show("Error Code: " + obj);
+            this.ErrorCodeData = obj;
+            //MessageBox.Show("Error Code: " + obj);
         }
 
         public void RootCauseSaved(string obj)
         {
-            MessageBox.Show("Root Cause: " + obj);
+            this.RootCause = obj;
+            //MessageBox.Show("Root Cause: " + obj);
         }
         #endregion
 
@@ -198,20 +203,13 @@ namespace Skylark2_TestExecutionCode.ViewModels
         /// In this example, there is no need for regions and so the region manager is commented out.
         /// </summary>
 
-        //private readonly IRegionManager _regionManager;
-        //public DelegateCommand<string> NavigateCommand { get; set; }
+        private readonly IRegionManager _regionManager;
+        public DelegateCommand<string> NavigateCommand { get; set; }
 
-        //public ErrorCodeViewModel(IRegionManager regionManager)
-        //{
-        //    _regionManager = regionManager;
-
-        //    NavigateCommand = new DelegateCommand<string>(Navigate);
-        //}
-
-        //private void Navigate(string uri)
-        //{
-        //    _regionManager.RequestNavigate("ContentRegion", uri);
-        //}
+        private void Navigate(string uri)
+        {
+            _regionManager.RequestNavigate("ContentRegion", uri);
+        }
 
 
     }
