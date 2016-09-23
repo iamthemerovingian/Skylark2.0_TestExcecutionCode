@@ -128,6 +128,10 @@ namespace Skylark2_TestExecutionCode.ViewModels
                         this.RootCause = returned.RootCauseText;
                         //MessageBox.Show("Error Code Data Recieved is : " + returned.ErrorCodeText + "\n Root Cause is : " + returned.RootCauseText);
                     }
+                    else if (returned.Confirmed == false)
+                    {
+                        //do nothing.
+                    }
                     else
                     {
                         MessageBox.Show("Some Shit went wrong...\n Error Code: " + returned.ErrorCodeText + "\n Root Cause: " + returned.RootCauseText + "\n Confirmed: " + returned.Confirmed);
@@ -208,7 +212,7 @@ namespace Skylark2_TestExecutionCode.ViewModels
 
         private void Navigate(string uri)
         {
-            _regionManager.RequestNavigate("ContentRegion", uri);
+            _regionManager.RequestNavigate("ContentRegion2", uri);
         }
 
 

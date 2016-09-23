@@ -1,4 +1,5 @@
 ﻿<UserControl x:Class="Skylark2_TestExecutionCode.Views.InputTextView"
+             x:Name="InputText"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -13,7 +14,7 @@
         <TextBox x:Name="txtRootCause" Text="{Binding RootCauseText, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" FontSize="20" FontWeight="Bold" Height="40" HorizontalAlignment="Left" Margin="187,82,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="349"/>
         <Label x:Name="lblErrorCode" FontSize="20" FontWeight="Bold" Height="40" Content="Error Code:" HorizontalAlignment="Left" Margin="8,37,0,0" VerticalAlignment="Top" Width="174"/>
         <Label x:Name="lblRootCause" FontSize="20" FontWeight="Bold" Height="40" Content="Root Cause:" HorizontalAlignment="Left" Margin="8,82,0,0" VerticalAlignment="Top" Width="134" RenderTransformOrigin="0.494,0.5"/>
-        <Button x:Name="btnCancel" FontSize="20" FontWeight="Bold" Command="{Binding CancelCommand}"  Content="Cancel" HorizontalAlignment="Left" Margin="461,127,0,0" VerticalAlignment="Top" Width="75" Height="33" />
+        <Button x:Name="btnCancel" FontSize="20" FontWeight="Bold" Command="{Binding CancelCommand}" Content="Cancel" HorizontalAlignment="Left" Margin="461,127,0,0" VerticalAlignment="Top" Width="75" Height="33" />
         <Button x:Name="btnSave" FontSize="20" FontWeight="Bold" Command="{Binding SaveCommand}" Content="Save" HorizontalAlignment="Left" Margin="381,127,0,0" VerticalAlignment="Top" Width="75" Height="33" />
     </Grid>
 </UserControl>

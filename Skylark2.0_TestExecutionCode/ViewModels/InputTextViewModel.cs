@@ -11,6 +11,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace Skylark2_TestExecutionCode.ViewModels
 {
@@ -89,7 +90,7 @@ namespace Skylark2_TestExecutionCode.ViewModels
             }
             else
             {
-                _regionManager.RequestNavigate("ContentRegion", "ErrorCodeView");
+                _regionManager.RequestNavigate("ContentRegion1", "ErrorCodeView");
             }
         }
 
@@ -111,7 +112,7 @@ namespace Skylark2_TestExecutionCode.ViewModels
             {
                 _eventAggregator.GetEvent<ErrorCodeUpdated>().Publish(this.ErrorCodeText);
                 _eventAggregator.GetEvent<RootCauseUpdated>().Publish(this.RootCauseText);
-                _regionManager.RequestNavigate("ContentRegion", "ErrorCodeView");
+                _regionManager.RequestNavigate("ContentRegion1", "ErrorCodeView");
             }
 
         }
