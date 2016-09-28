@@ -134,7 +134,7 @@ namespace Skylark2_TestExecutionCode.ViewModels
                     }
                     else
                     {
-                        MessageBox.Show("Some Shit went wrong...\n Error Code: " + returned.ErrorCodeText + "\n Root Cause: " + returned.RootCauseText + "\n Confirmed: " + returned.Confirmed);
+                        MessageBox.Show("Something went wrong...\n Error Code: " + returned.ErrorCodeText + "\n Root Cause: " + returned.RootCauseText + "\n Confirmed: " + returned.Confirmed);
                     }
                 }
                                         );
