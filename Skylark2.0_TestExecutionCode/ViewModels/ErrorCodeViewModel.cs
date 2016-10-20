@@ -4,11 +4,9 @@ using Prism.Events;
 using Skylark2_TestExecutionCode.Events;
 using Prism.Regions;
 using Prism.Commands;
-using System;
 using System.Windows;
 using Skylark2_TestExecutionCode.Notifications;
 using Prism.Interactivity.InteractionRequest;
-using System.Windows.Input;
 
 namespace Skylark2_TestExecutionCode.ViewModels
 {

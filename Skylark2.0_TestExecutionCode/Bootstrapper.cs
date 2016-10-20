@@ -12,7 +12,9 @@ namespace Skylark2_TestExecutionCode
 {
     /// <summary>
     /// This is the Initilization Class of the Entire Application.
-    /// It uses a container called Unity 
+    /// It uses a container called Unity.
+    /// Once you're done seting up here you have to override the normal startup sequence of the form and use the bootstrapper class instead.
+    /// Do this in the App class in the onStartUp event.
     /// </summary>
     class Bootstrapper : UnityBootstrapper
     {
