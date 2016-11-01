@@ -99,8 +99,7 @@ namespace Skylark2_TestExecutionCode.ViewModels
                     n =>
                     {
                         //MessageBox.Show("The user was notified.");
-                    }
-                                           );
+                    });
         }
 
         private bool CanExcecuteRaiseInputDialog()
@@ -134,8 +133,7 @@ namespace Skylark2_TestExecutionCode.ViewModels
                     {
                         MessageBox.Show("Something went wrong...\n Error Code: " + returned.ErrorCodeText + "\n Root Cause: " + returned.RootCauseText + "\n Confirmed: " + returned.Confirmed);
                     }
-                }
-                                        );
+                });
         }
 
         #region WriteErrorCode Members
