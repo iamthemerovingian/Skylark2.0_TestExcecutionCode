@@ -69,7 +69,7 @@ namespace Skylark2_TestExecutionCode.ViewModels
             eventAggregator.GetEvent<ErrorCodeUpdated>().Subscribe(ErrorCodeSaved);
             eventAggregator.GetEvent<RootCauseUpdated>().Subscribe(RootCauseSaved);
 
-            //This is a notification request, it is used to bind to the current viewmodel and pass control to a notification through InteractionRequests.
+            ///This is a notification request, it is used to bind to the current viewmodel and pass control to a notification through InteractionRequests.
             NotificationRequest = new InteractionRequest<INotification>();
             InputTextRequest = new InteractionRequest<InputTextNotification>();
 
@@ -90,6 +90,13 @@ namespace Skylark2_TestExecutionCode.ViewModels
             ///This is for navigating regions.
              _regionManager = regionManager;
              NavigateCommand = new DelegateCommand<string>(Navigate);
+
+            ShowInteractionWindowAsync();
+        }
+
+        private async void ShowInteractionWindowAsync()
+        {
+            await CustomCommand.Execute();
         }
 
         private void RaiseNotification()
@@ -123,11 +130,11 @@ namespace Skylark2_TestExecutionCode.ViewModels
                     {
                         this.ErrorCodeData = returned.ErrorCodeText;
                         this.RootCause = returned.RootCauseText;
-                        //MessageBox.Show("Error Code Data Recieved is : " + returned.ErrorCodeText + "\n Root Cause is : " + returned.RootCauseText);
+                        MessageBox.Show("Error Code Data Recieved is : " + returned.ErrorCodeText + "\n Root Cause is : " + returned.RootCauseText);
                     }
                     else if (returned.Confirmed == false)
                     {
-                        //do nothing.
+                        MessageBox.Show($"Confirmed = {returned.Confirmed}");
                     }
                     else
                     {

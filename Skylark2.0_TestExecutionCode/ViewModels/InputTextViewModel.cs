@@ -24,10 +24,10 @@ namespace Skylark2_TestExecutionCode.ViewModels
 
         private readonly IRegionManager _regionManager;
 
-        public InputTextViewModel()
-        {
+        //public InputTextViewModel()
+        //{
 
-        }
+        //}
 
         public Action FinishInteraction { get; set; }
 

@@ -8,13 +8,14 @@
              xmlns:prism="http://prismlibrary.com/"
              xmlns:views="clr-namespace:Skylark2_TestExecutionCode.Views"
              prism:ViewModelLocator.AutoWireViewModel="True"
-             mc:Ignorable="d" Height="186.109" Width="557.748">
+             mc:Ignorable="d" Height="221.109" Width="557.748">
     <Grid Margin="10,10,10,10">
-        <TextBox x:Name="txtErrorCode" Text="{Binding ErrorCodeText, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" FontSize="20" FontWeight="Bold" Height="40" HorizontalAlignment="Left" Margin="187,37,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="349"/>
-        <TextBox x:Name="txtRootCause" Text="{Binding RootCauseText, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" FontSize="20" FontWeight="Bold" Height="40" HorizontalAlignment="Left" Margin="187,82,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="349"/>
-        <Label x:Name="lblErrorCode" FontSize="20" FontWeight="Bold" Height="40" Content="Error Code:" HorizontalAlignment="Left" Margin="8,37,0,0" VerticalAlignment="Top" Width="174"/>
-        <Label x:Name="lblRootCause" FontSize="20" FontWeight="Bold" Height="40" Content="Root Cause:" HorizontalAlignment="Left" Margin="8,82,0,0" VerticalAlignment="Top" Width="134" RenderTransformOrigin="0.494,0.5"/>
-        <Button x:Name="btnCancel" FontSize="20" FontWeight="Bold" Command="{Binding CancelCommand}" Content="Cancel" HorizontalAlignment="Left" Margin="461,127,0,0" VerticalAlignment="Top" Width="75" Height="33" />
-        <Button x:Name="btnSave" FontSize="20" FontWeight="Bold" Command="{Binding SaveCommand}" Content="Save" HorizontalAlignment="Left" Margin="381,127,0,0" VerticalAlignment="Top" Width="75" Height="33" />
+        <TextBox x:Name="txtErrorCode" Text="{Binding ErrorCodeText, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" FontSize="20" FontWeight="Bold" Height="40" HorizontalAlignment="Left" Margin="187,68,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="349"/>
+        <TextBox x:Name="txtRootCause" Text="{Binding RootCauseText, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" FontSize="20" FontWeight="Bold" Height="40" HorizontalAlignment="Left" Margin="187,113,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="349"/>
+        <Label x:Name="lblErrorCode" FontSize="20" FontWeight="Bold" Height="40" Content="Error Code:" HorizontalAlignment="Left" Margin="8,68,0,0" VerticalAlignment="Top" Width="174"/>
+        <Label x:Name="lblRootCause" FontSize="20" FontWeight="Bold" Height="40" Content="Root Cause:" HorizontalAlignment="Left" Margin="8,113,0,0" VerticalAlignment="Top" Width="134" RenderTransformOrigin="0.494,0.5"/>
+        <Button x:Name="btnCancel" FontSize="20" FontWeight="Bold" Command="{Binding CancelCommand}" Content="Cancel" HorizontalAlignment="Left" Margin="461,158,0,0" VerticalAlignment="Top" Width="75" Height="33" />
+        <Button x:Name="btnSave" FontSize="20" FontWeight="Bold" Command="{Binding SaveCommand}" Content="Save" HorizontalAlignment="Left" Margin="381,158,0,0" VerticalAlignment="Top" Width="75" Height="33" />
+        <Label x:Name="title" Content="This is a Custom interaction Window." FontSize="20" FontWeight="Bold" HorizontalAlignment="Left" Margin="0,10,0,0" VerticalAlignment="Top"/>
     </Grid>
 </UserControl>
