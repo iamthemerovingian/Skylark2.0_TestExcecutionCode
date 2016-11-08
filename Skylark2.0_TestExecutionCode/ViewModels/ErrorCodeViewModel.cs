@@ -16,7 +16,7 @@ namespace Skylark2_TestExecutionCode.ViewModels
         private string _rootCause;
 
         ErrorCodes ErrorCodesObj = new ErrorCodes();
-        public InteractionRequest<InputTextNotification> InputTextRequest { get; set; }
+        public InteractionRequest<InputTextNotification> InputTextRequest { get; private set; }
         public InteractionRequest<INotification> NotificationRequest { get; private set; }
 
         /// <summary>
@@ -91,7 +91,7 @@ namespace Skylark2_TestExecutionCode.ViewModels
              _regionManager = regionManager;
              NavigateCommand = new DelegateCommand<string>(Navigate);
 
-            ShowInteractionWindowAsync();
+            //ShowInteractionWindowAsync();
         }
 
         private async void ShowInteractionWindowAsync()
